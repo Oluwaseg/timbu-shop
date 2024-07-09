@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Example: src/App.css */
+
+body {
+  font-family: "Nomina", sans-serif;
+}
+
+.header {
+  font-family: "Calesta", serif;
+}
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.custom-scrollbar {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer 10+ */
+  overflow: -moz-scrollbars-none; /* For older versions of Firefox */
+  overflow: hidden; /* Hides the scrollbar completely */
+}
+
+@media (max-width: 385px) {
+  .responsive-text {
+    font-size: 14px; /* Adjust as needed */
+  }
+  .responsive-signin {
+    font-size: 12px; /* Adjust as needed */
+  }
+}
+
+@media (max-width: 375px) {
+  .responsive-nav {
+    font-size: 14px; /* Adjust the font size as needed */
+  }
+
+  .responsive-nav li {
+    padding-left: 4px; /* Adjust the padding as needed */
+    padding-right: 4px; /* Adjust the padding as needed */
+  }
+
+  .responsive-signin {
+    text-align: center;
+    white-space: normal;
+  }
+}
