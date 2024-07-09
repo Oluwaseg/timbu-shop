@@ -248,7 +248,7 @@ const Cart = () => {
             <div className="md:hidden grid grid-cols-2 gap-4 mt-4">
               <div className="text-center">
                 <img
-                  src="/public/Olay.png"
+                  src="../../public/Olay.png"
                   alt="Retinol Bodycare Lotion"
                   className="w-32 mx-auto mb-2 h-32"
                 />
@@ -258,7 +258,7 @@ const Cart = () => {
               </div>
               <div className="text-center">
                 <img
-                  src="/public/Naturium.png"
+                  src="../../public/Naturium.png"
                   alt="Bronze Goddess Bodycare Lotion"
                   className="w-32 mx-auto mb-2 h-32"
                 />
@@ -285,7 +285,7 @@ const Cart = () => {
           <div className="flex flex-col items-center w-full">
             <div className="flex items-start w-full mb-4">
               <img
-                src="/cart.png"
+                src="../../public/cart.png"
                 alt="MEDIX 5.5 Body Moisturizer"
                 className="w-20 h-30 object-center object-contain mr-4"
               />
@@ -339,13 +339,13 @@ const Cart = () => {
               <div className="flex justify-between mt-4">
                 <NavLink
                   to="/orderConfirmation"
-                  className="rounded-full border font-semibold border-[#FFB6C1] bg-white text-[#FFB6C1] py-2  mr-2 flex-grow"
+                  className="rounded-full border font-semibold text-center border-[#FFB6C1] bg-white text-[#FFB6C1] py-2  mr-2 flex-grow"
                 >
                   Proceed to check out
                 </NavLink>
                 <NavLink
                   to="/"
-                  className="border-2  border-[#DF9BA5] font-semibold text-accent-500 bg-[#FFB6C1] py-2 rounded-full flex-grow"
+                  className="border-2  border-[#DF9BA5] text-center font-semibold text-accent-500 bg-[#FFB6C1] py-2 rounded-full flex-grow"
                 >
                   Continue shopping
                 </NavLink>
