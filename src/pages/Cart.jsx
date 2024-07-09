@@ -124,7 +124,7 @@ const Cart = () => {
                 {" "}
                 <div className="w-full h-64 md:w-96 md:h-auto flex items-center justify-center">
                   <img
-                    src="../../public/Amalactin.png"
+                    src="/Amalactin.png"
                     alt="MEDIX 5.5 Body Moisturizer"
                     className="w-full h-full object-contain"
                   />
@@ -136,7 +136,7 @@ const Cart = () => {
               <div className="hidden md:grid md:grid-cols-2 md:gap-6 md:mt-4">
                 <div className="text-center">
                   <img
-                    src="/public/Olay.png"
+                    src="/Olay.png"
                     alt="Retinol Bodycare Lotion"
                     className="w-43 mx-auto mb-2 h-42"
                   />
@@ -146,7 +146,7 @@ const Cart = () => {
                 </div>
                 <div className="text-center">
                   <img
-                    src="/public/Naturium.png"
+                    src="/Naturium.png"
                     alt="Bronze Goddess Bodycare Lotion"
                     className="w-43 mx-auto mb-2 h-50"
                   />
@@ -248,7 +248,7 @@ const Cart = () => {
             <div className="md:hidden grid grid-cols-2 gap-4 mt-4">
               <div className="text-center">
                 <img
-                  src="../../public/Olay.png"
+                  src="/Olay.png"
                   alt="Retinol Bodycare Lotion"
                   className="w-32 mx-auto mb-2 h-32"
                 />
@@ -258,7 +258,7 @@ const Cart = () => {
               </div>
               <div className="text-center">
                 <img
-                  src="../../public/Naturium.png"
+                  src="/Naturium.png"
                   alt="Bronze Goddess Bodycare Lotion"
                   className="w-32 mx-auto mb-2 h-32"
                 />
@@ -285,7 +285,7 @@ const Cart = () => {
           <div className="flex flex-col items-center w-full">
             <div className="flex items-start w-full mb-4">
               <img
-                src="../../public/cart.png"
+                src="/cart.png"
                 alt="MEDIX 5.5 Body Moisturizer"
                 className="w-20 h-30 object-center object-contain mr-4"
               />
