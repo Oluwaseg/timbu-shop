@@ -2,7 +2,7 @@ import ProductCard from "./ProductCard";
 
 const products = [
   {
-    image: "../../public/Retinol.png ",
+    image: "/public/Retinol.png ",
     name: "Retinol ",
     brand: "Bodycare Lotion",
     price: "18,000",
