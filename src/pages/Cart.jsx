@@ -9,7 +9,6 @@ import Button from "../components/Button";
 import Footer from "../components/Footer";
 import { NavLink } from "react-router-dom";
 import Modal from "../components/Modal";
-import Navbar from "../components/Navbar";
 
 const Cart = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -33,7 +32,29 @@ const Cart = () => {
         <div className="p-2">
           {/* Navbar */}
           {/* Desktop View */}
-          <Navbar bg={true} />
+          <div className="hidden md:flex lg:px-8 lg:py-1 mt-4 md:px-4 md:py-2 justify-between items-center s mx-auto w-full lg:w-[90%]">
+            <div className="flex items-center lg:gap-8 md:gap-4 px-4 lg:px-8 py-2">
+              <p className="lg:text-lg">Home</p>
+              <div className="flex lg:gap-2 items-center">
+                <p className="lg:text-lg">Products</p>
+                <Down className="lg:hidden" />
+              </div>
+              <p className="lg:text-lg">Contacts</p>
+            </div>
+
+            <p className="text-lg header font-medium lg:text-xl">
+              Skin <span className="text-[#FFB6C1]">Hub</span>
+            </p>
+
+            <div className="flex gap-10 items-center">
+              <div className="flex gap-2 lg:gap-4">
+                <Search />
+                <Favourite />
+                <ShoppingCart />
+              </div>
+              <Button buttonText={"Login"} />
+            </div>
+          </div>
 
           {/* Mobile View */}
           <div className="md:hidden w-full px-4 py-2 flex justify-between items-center">
