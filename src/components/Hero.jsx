@@ -1,15 +1,9 @@
-import BoxedFavourite from "./BoxedFavourite";
-import Button from "./Button";
 import Footer from "./Footer";
 import Product from "./Product";
 import Navbar from "./Navbar";
-import LeftSlide from "./LeftSlide";
-import RightSlide from "./RightSlide";
-import ProductSlider from "./productSlider";
-import ProductGrid from "./productGrid";
 import Search from "./Search";
-import useMediaQuery from "../utils/media";
 import Product2 from "./SecondProduct";
+import HeroSection from "./HeroSection";
 
 const categories = [
   { name: "Body Care", style: "bg-[#FFB6C1] text-accent-400 font-semibold" },
@@ -27,47 +21,7 @@ const categories = [
   },
 ];
 
-const products = [
-  {
-    imgSrc: "/medix.png",
-    alt: "medix",
-    name: "MEDIX 5.5",
-    description: "Body Moisturizer",
-    details: "Glycolic and Lactic Acid",
-    price: "#15,000",
-    borderColor: "border-zinc-400",
-  },
-  {
-    imgSrc: "/Amalactin.png",
-    alt: "Amalactin",
-    name: "AmLactin",
-    description: "Body Moisturizer",
-    details: "12% Lactic Acid",
-    price: "#145,300",
-    borderColor: "border-zinc-400",
-  },
-  {
-    imgSrc: "/Olay.png",
-    alt: "Olay",
-    name: "Olay",
-    description: "Body Moisturizer",
-    details: "Mango Butter & Vanilla Orchid",
-    price: "#32,000",
-    borderColor: "border-zinc-400",
-  },
-  {
-    imgSrc: "/Naturium.png",
-    alt: "Naturium",
-    name: "Naturium",
-    description: "Body Wash",
-    details: "Gel - Gel",
-    price: "#32,000",
-    borderColor: "border-[#DE8C99]",
-  },
-];
-
 const Hero = () => {
-  const isMobile = useMediaQuery("(max-width: 767px)");
   return (
     <>
       <Navbar />
@@ -130,25 +84,7 @@ const Hero = () => {
           <div className="bg-[url('/starElipse.svg')] bg-contain bg-no-repeat bg-center md:px-6 md:py-8 lg:mt-16 lg:w-fit flex items-center justify-center">
             <h2 className="font-bold lg:text-2xl">Body Care Best Seller</h2>
           </div>
-          <div className="h-full w-full flex flex-col items-center py-8 md:py-10 md:gap-8">
-            {/* Mobile View */}
-            {isMobile ? (
-              <ProductSlider products={products} />
-            ) : (
-              <ProductGrid products={products} />
-            )}
-          </div>
-          {!isMobile && (
-            <div className="w-full flex items-center gap-12 mt-8 lg:mt-0">
-              <div className="flex w-fit gap-6 items-center">
-                <LeftSlide />
-                <RightSlide />
-              </div>
-              <div className="bg-[#FFB6C1] w-full h-4 rounded-full">
-                <div className="w-1/5 h-full rounded-full bg-[#DF9BA5]"></div>
-              </div>
-            </div>
-          )}
+          <HeroSection />
         </section>
       </div>
       <Product />

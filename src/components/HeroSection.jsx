@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import ProductSlider from "./productSlider";
 import axiosInstance from "../utils/axiosInstance";
-import ProductCard from "./ProductCard";
 import { Toaster, toast } from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
+import useMediaQuery from "../utils/media";
+import ProductGrid from "./productGrid";
+import LeftSlide from "./LeftSlide";
+import RightSlide from "./RightSlide";
 
-const Product = () => {
+const HeroSection = () => {
   const [products, setProducts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 767px)");
 
-  const fetchProducts = async (page) => {
+  const fetchProducts = async () => {
     setIsLoading(true);
     const controller = new AbortController();
     const timeoutId = setTimeout(() => {
@@ -24,8 +27,8 @@ const Product = () => {
         params: {
           organization_id: "b49a33927c6f41bf89a9616048e4da89",
           reverse_sort: false,
-          page: page,
-          size: 10, // Fetch 10 items per page
+          page: 1,
+          size: 4, // Fetch only 4 items
           Appid: "BX2XX72MKKPA4RC",
           Apikey: "25ff67d2942e45e3aa13dc9b0810479420240712144414667166",
         },
@@ -33,23 +36,23 @@ const Product = () => {
       });
 
       const items = response.data.items.map((item) => ({
-        name: item.name,
-        price: extractPrice(item.current_price),
         id: item.id,
+        name: item.name,
+        price: `₦${extractPrice(item.current_price)}`,
         image: `https://api.timbu.cloud/images/${
           item.photos.length > 0 ? item.photos[0].url : ""
         }`,
         category:
           item.categories.length > 0 ? item.categories[0].name : "No category",
+        details: item.details || "Details not available",
+        borderColor: "border-zinc-400", // This is a placeholder, update as needed
       }));
-
-      setTotalPages(Math.ceil(response.data.total / 10));
 
       setTimeout(() => {
         setProducts(items);
         clearTimeout(timeoutId);
         setIsLoading(false);
-      }, 2000);
+      }, 2000); // 2 seconds delay
     } catch (error) {
       if (error.name === "AbortError") {
         console.error("Fetch aborted due to timeout.");
@@ -61,10 +64,6 @@ const Product = () => {
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    fetchProducts(currentPage);
-  }, [currentPage]);
 
   const extractPrice = (current_price) => {
     if (
@@ -78,17 +77,9 @@ const Product = () => {
     return "Price not available";
   };
 
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <div>
@@ -96,38 +87,33 @@ const Product = () => {
       {isLoading ? (
         <div className="flex flex-col items-center justify-center h-screen">
           <FaSpinner className="animate-spin text-4xl text-[#de8c99]" />
-          <p className="mt-2 text-[#de8c99]">Products are being fetched...</p>
+          <p className="mt-2 text-lg text-[#de8c99]">Fetching products...</p>
         </div>
       ) : (
         <>
-          <div className="p-4 bg-primary grid grid-cols-3 lg:px-16 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {products.map((product, index) => (
-              <ProductCard key={index} product={product} />
-            ))}
+          <div className="h-full w-full flex flex-col items-center py-8 md:py-10 md:gap-8">
+            {isMobile ? (
+              <ProductSlider products={products} />
+            ) : (
+              <ProductGrid products={products} />
+            )}
           </div>
-          <div className="flex justify-center py-2 bg-primary">
-            <button
-              onClick={handlePreviousPage}
-              disabled={currentPage === 1}
-              className="px-4 py-2 mx-2 border border-[#de8c99] text-[#de8c99] rounded-lg disabled:opacity-50"
-            >
-              Previous
-            </button>
-            <span className="px-4 py-2 mx-2">
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-              className="px-4 py-2 mx-2 border border-[#de8c99] text-[#de8c99] rounded-lg disabled:opacity-50"
-            >
-              Next
-            </button>
-          </div>
+
+          {!isMobile && (
+            <div className="w-full flex items-center gap-12 mt-8 lg:mt-0">
+              <div className="flex w-fit gap-6 items-center">
+                <LeftSlide />
+                <RightSlide />
+              </div>
+              <div className="bg-[#FFB6C1] w-full h-4 rounded-full">
+                <div className="w-1/5 h-full rounded-full bg-[#DF9BA5]"></div>
+              </div>
+            </div>
+          )}
         </>
       )}
     </div>
   );
 };
 
-export default Product;
+export default HeroSection;
