@@ -32,24 +32,32 @@ const Product = () => {
         signal: controller.signal,
       });
 
-      const items = response.data.items.map((item) => ({
-        name: item.name,
-        price: extractPrice(item.current_price),
-        id: item.id,
-        image: `https://api.timbu.cloud/images/${
-          item.photos.length > 0 ? item.photos[0].url : ""
-        }`,
-        category:
-          item.categories.length > 0 ? item.categories[0].name : "No category",
-      }));
+      console.log(response.data); // Log the response to check its structure
 
-      setTotalPages(Math.ceil(response.data.total / 10));
+      if (response.data && response.data.items) {
+        const items = response.data.items.map((item) => ({
+          name: item.name,
+          price: extractPrice(item.current_price),
+          id: item.id,
+          image: `https://api.timbu.cloud/images/${
+            item.photos.length > 0 ? item.photos[0].url : ""
+          }`,
+          category:
+            item.categories.length > 0
+              ? item.categories[0].name
+              : "No category",
+        }));
 
-      setTimeout(() => {
-        setProducts(items);
-        clearTimeout(timeoutId);
-        setIsLoading(false);
-      }, 2000);
+        setTotalPages(Math.ceil(response.data.total / 10));
+
+        setTimeout(() => {
+          setProducts(items);
+          clearTimeout(timeoutId);
+          setIsLoading(false);
+        }, 2000);
+      } else {
+        throw new Error("Unexpected API response structure");
+      }
     } catch (error) {
       if (error.name === "AbortError") {
         console.error("Fetch aborted due to timeout.");
