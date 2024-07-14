@@ -11,6 +11,7 @@ import Button from "../components/Button";
 import Footer from "../components/Footer";
 import { NavLink } from "react-router-dom";
 import Modal from "../components/Modal";
+import { FaSpinner } from "react-icons/fa";
 
 const Product = () => {
   const { id } = useParams();
@@ -54,7 +55,12 @@ const Product = () => {
   }, [id]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex flex-col items-center justify-center h-screen">
+        <FaSpinner className="animate-spin text-4xl text-[#de8c99]" />
+        <p className="mt-2 text-[#de8c99]">Products are being fetched...</p>
+      </div>
+    );
   }
 
   const category =

@@ -122,13 +122,13 @@ const Cart = () => {
                     </span>
                   </div>
                   <button
-                    className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full"
+                    className="bg-[#de8c99] text-white py-2 px-4 rounded-lg mt-4 w-full"
                     onClick={handleResetCart}
                   >
                     Reset Cart
                   </button>
                   <button
-                    className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full"
+                    className="bg-[#de8c99] text-white py-2 px-4 rounded-lg mt-4 w-full"
                     onClick={handleCheckout}
                   >
                     Checkout
@@ -138,7 +138,7 @@ const Cart = () => {
                 <>
                   <p>Your cart is empty.</p>
                   <button
-                    className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full"
+                    className="bg-[#de8c99] text-white py-2 px-4 rounded-lg mt-4 w-full"
                     onClick={redirectToHome}
                   >
                     Go to Home
