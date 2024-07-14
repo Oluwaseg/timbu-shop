@@ -100,7 +100,7 @@ const Product = () => {
         </div>
       ) : (
         <>
-          <div className="p-4 bg-primary grid grid-cols-3 lg:px-16 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="p-4 bg-primary grid grid-cols-2 lg:px-16 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {products.map((product, index) => (
               <ProductCard key={index} product={product} />
             ))}

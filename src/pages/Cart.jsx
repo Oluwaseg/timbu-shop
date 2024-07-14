@@ -39,113 +39,212 @@ const Cart = () => {
     <div className="bg-primary min-h-screen py-8">
       <div className="container mx-auto px-4">
         <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="md:w-3/4">
-            <div className="bg-white rounded-lg shadow-md p-6 mb-4">
-              {cartState.items.length > 0 ? (
-                <table className="w-full">
-                  <thead>
-                    <tr>
-                      <th className="text-left font-semibold">Product</th>
-                      <th className="text-left font-semibold">Price</th>
-                      <th className="text-left font-semibold">Quantity</th>
-                      <th className="text-left font-semibold">Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cartState.items.map((item, index) => (
-                      <tr key={index}>
-                        <td className="py-4">
-                          <div className="flex items-center">
-                            <img
-                              className="h-16 w-16 mr-4"
-                              src={item.image}
-                              alt={item.name}
-                            />
-                            <span className="font-semibold">{item.name}</span>
-                          </div>
-                        </td>
-                        <td className="py-4">₦{item.price}</td>
-                        <td className="py-4">
-                          <div className="flex items-center">
-                            <button
-                              className="border border-[#de8c99] rounded-lg py-2 px-4 mr-2"
-                              onClick={() => handleDecrement(item.id)}
-                            >
-                              -
-                            </button>
-                            <span className="text-center w-8">
-                              {item.quantity}
-                            </span>
-                            <button
-                              className="border border-[#de8c99] rounded-lg py-2 px-4 ml-2"
-                              onClick={() => handleIncrement(item.id)}
-                            >
-                              +
-                            </button>
-                          </div>
-                        </td>
-                        <td className="py-4">
-                          ₦{(item.price * item.quantity).toFixed(2)}
-                        </td>
+        {/* Desktop and Tablet View */}
+        <div className="hidden md:block">
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="md:w-3/4">
+              <div className="bg-white rounded-lg shadow-md p-6 mb-4">
+                {cartState.items.length > 0 ? (
+                  <table className="w-full">
+                    <thead>
+                      <tr>
+                        <th className="text-left font-semibold">Product</th>
+                        <th className="text-left font-semibold">Price</th>
+                        <th className="text-left font-semibold">Quantity</th>
+                        <th className="text-left font-semibold">Total</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              ) : (
-                <p>Your cart is empty.</p>
-              )}
+                    </thead>
+                    <tbody>
+                      {cartState.items.map((item, index) => (
+                        <tr key={index}>
+                          <td className="py-4">
+                            <div className="flex items-center">
+                              <img
+                                className="h-16 w-16 mr-4"
+                                src={item.image}
+                                alt={item.name}
+                              />
+                              <span className="font-semibold">{item.name}</span>
+                            </div>
+                          </td>
+                          <td className="py-4">₦{item.price}</td>
+                          <td className="py-4">
+                            <div className="flex items-center">
+                              <button
+                                className="border border-[#de8c99] rounded-lg py-2 px-4 mr-2"
+                                onClick={() => handleDecrement(item.id)}
+                              >
+                                -
+                              </button>
+                              <span className="text-center w-8">
+                                {item.quantity}
+                              </span>
+                              <button
+                                className="border border-[#de8c99] rounded-lg py-2 px-4 ml-2"
+                                onClick={() => handleIncrement(item.id)}
+                              >
+                                +
+                              </button>
+                            </div>
+                          </td>
+                          <td className="py-4">
+                            ₦{(item.price * item.quantity).toFixed(2)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <p>Your cart is empty.</p>
+                )}
+              </div>
+            </div>
+            <div className="md:w-1/4">
+              <div className="bg-white rounded-lg shadow-md p-6">
+                <h2 className="text-lg font-semibold mb-4">Summary</h2>
+                {cartState.items.length > 0 ? (
+                  <>
+                    <div className="flex justify-between mb-2">
+                      <span>Subtotal</span>
+                      <span>₦{totalPrice.toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between mb-2">
+                      <span>Taxes (20%)</span>
+                      <span>₦{tax.toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between mb-2">
+                      <span>Shipping</span>
+                      <span>₦{shipping.toFixed(2)}</span>
+                    </div>
+                    <hr className="my-2" />
+                    <div className="flex justify-between mb-2">
+                      <span className="font-semibold">Total</span>
+                      <span className="font-semibold">
+                        ₦{grandTotal.toFixed(2)}
+                      </span>
+                    </div>
+                    <button
+                      className="bg-[#de8c99] text-white py-2 px-4 rounded-lg mt-4 w-full"
+                      onClick={handleResetCart}
+                    >
+                      Reset Cart
+                    </button>
+                    <button
+                      className="bg-[#de8c99] text-white py-2 px-4 rounded-lg mt-4 w-full"
+                      onClick={handleCheckout}
+                    >
+                      Checkout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <p>Your cart is empty.</p>
+                    <button
+                      className="bg-[#de8c99] text-white py-2 px-4 rounded-lg mt-4 w-full"
+                      onClick={redirectToHome}
+                    >
+                      Go to Home
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           </div>
-          <div className="md:w-1/4">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-lg font-semibold mb-4">Summary</h2>
-              {cartState.items.length > 0 ? (
-                <>
-                  <div className="flex justify-between mb-2">
-                    <span>Subtotal</span>
-                    <span>₦{totalPrice.toFixed(2)}</span>
+        </div>
+
+        {/* Mobile View */}
+        <div className="md:hidden">
+          <div className="bg-white rounded-lg shadow-md p-6 mb-4">
+            {cartState.items.length > 0 ? (
+              cartState.items.map((item, index) => (
+                <div key={index} className="mb-4">
+                  <div className="flex items-center mb-2">
+                    <img
+                      className="h-16 w-16 mr-4"
+                      src={item.image}
+                      alt={item.name}
+                    />
+                    <span className="font-semibold">{item.name}</span>
                   </div>
-                  <div className="flex justify-between mb-2">
-                    <span>Taxes (20%)</span>
-                    <span>₦{tax.toFixed(2)}</span>
+                  <div className="flex items-center mb-2">
+                    <span className="font-semibold mr-2">Price:</span>
+                    <span>₦{item.price}</span>
                   </div>
-                  <div className="flex justify-between mb-2">
-                    <span>Shipping</span>
-                    <span>₦{shipping.toFixed(2)}</span>
+                  <div className="flex items-center mb-2">
+                    <span className="font-semibold mr-2">Quantity:</span>
+                    <div className="flex items-center">
+                      <button
+                        className="border border-[#de8c99] rounded-lg py-2 px-4 mr-2"
+                        onClick={() => handleDecrement(item.id)}
+                      >
+                        -
+                      </button>
+                      <span className="text-center w-8">{item.quantity}</span>
+                      <button
+                        className="border border-[#de8c99] rounded-lg py-2 px-4 ml-2"
+                        onClick={() => handleIncrement(item.id)}
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                  <hr className="my-2" />
-                  <div className="flex justify-between mb-2">
-                    <span className="font-semibold">Total</span>
-                    <span className="font-semibold">
-                      ₦{grandTotal.toFixed(2)}
-                    </span>
+                  <div className="flex items-center">
+                    <span className="font-semibold mr-2">Total:</span>
+                    <span>₦{(item.price * item.quantity).toFixed(2)}</span>
                   </div>
-                  <button
-                    className="bg-[#de8c99] text-white py-2 px-4 rounded-lg mt-4 w-full"
-                    onClick={handleResetCart}
-                  >
-                    Reset Cart
-                  </button>
-                  <button
-                    className="bg-[#de8c99] text-white py-2 px-4 rounded-lg mt-4 w-full"
-                    onClick={handleCheckout}
-                  >
-                    Checkout
-                  </button>
-                </>
-              ) : (
-                <>
-                  <p>Your cart is empty.</p>
-                  <button
-                    className="bg-[#de8c99] text-white py-2 px-4 rounded-lg mt-4 w-full"
-                    onClick={redirectToHome}
-                  >
-                    Go to Home
-                  </button>
-                </>
-              )}
-            </div>
+                </div>
+              ))
+            ) : (
+              <p>Your cart is empty.</p>
+            )}
+          </div>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-lg font-semibold mb-4">Summary</h2>
+            {cartState.items.length > 0 ? (
+              <>
+                <div className="flex justify-between mb-2">
+                  <span>Subtotal</span>
+                  <span>₦{totalPrice.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between mb-2">
+                  <span>Taxes (20%)</span>
+                  <span>₦{tax.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between mb-2">
+                  <span>Shipping</span>
+                  <span>₦{shipping.toFixed(2)}</span>
+                </div>
+                <hr className="my-2" />
+                <div className="flex justify-between mb-2">
+                  <span className="font-semibold">Total</span>
+                  <span className="font-semibold">
+                    ₦{grandTotal.toFixed(2)}
+                  </span>
+                </div>
+                <button
+                  className="bg-[#de8c99] text-white py-2 px-4 rounded-lg mt-4 w-full"
+                  onClick={handleResetCart}
+                >
+                  Reset Cart
+                </button>
+                <button
+                  className="bg-[#de8c99] text-white py-2 px-4 rounded-lg mt-4 w-full"
+                  onClick={handleCheckout}
+                >
+                  Checkout
+                </button>
+              </>
+            ) : (
+              <>
+                <p>Your cart is empty.</p>
+                <button
+                  className="bg-[#de8c99] text-white py-2 px-4 rounded-lg mt-4 w-full"
+                  onClick={redirectToHome}
+                >
+                  Go to Home
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>

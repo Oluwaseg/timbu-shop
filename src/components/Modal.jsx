@@ -22,9 +22,9 @@ const Modal = ({ isOpen, onClose, children }) => {
       id="modal-overlay"
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
     >
-      <div className="bg-[#FEFAFB] p-8 relative w-full sm:w-90 max-w-3xl min-h-screen overflow-y-auto sm:rounded-lg">
+      <div className="bg-[#FEFAFB] p-4 sm:p-8 relative w-full max-w-3xl min-h-screen overflow-y-auto sm:rounded-lg">
         <button
-          className="absolute top-4 right-4 text-gray-600"
+          className="absolute top-8 md:top-2 right-2 text-gray-600"
           onClick={onClose}
         >
           <MdClose size={24} />

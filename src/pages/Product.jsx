@@ -355,9 +355,7 @@ const Product = () => {
               />
               <div className="flex flex-col flex-grow">
                 <p className="font-semibold text-lg">{product.name}</p>
-                <p className="text-sm text-gray-500">
-                  {product.description || "No description available"}
-                </p>
+                {/* <p className="text-sm text-gray-500"></p> */}
                 <div className="flex items-center mt-2">
                   <div className="hidden sm:block border-2 border-[#de8c99] rounded-full">
                     <button

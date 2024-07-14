@@ -48,8 +48,8 @@ const Hero = () => {
             <br className="block md:hidden" />
             both local and international brands
           </h1>
-          <div className="mt-6 overflow-x-auto">
-            <div className="flex gap-2 pb-1 w-max">
+          <div className="mt-6 ">
+            <div className="flex gap-2 pb-1 ">
               {categories.map((category) => (
                 <button
                   key={category.name}
